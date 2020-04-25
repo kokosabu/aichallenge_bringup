@@ -32,9 +32,12 @@ roslaunch aichallenge_bringup aichallenge_bringup.launch acc:=(true or false) av
 requirement: docker>=19.03
 
 ```
-cd sample_aichallenge_ws
-docker build -t <tagName> .
-docker run -it --rm --gpus all -p 9090:9090 <tagName> bash
+cd ~/aichallenge_ws
+cp src/aichallenge_bringup/Dockerfile .
+docker build -t autoware/autoware:1.13.0-melodic-cuda .
+docker run -it --rm --gpus all -p 9090:9090 autoware/autoware:1.13.0-melodic-cuda bash
+# if you can't use gpu
+# docker run -it --rm -p 9090:9090 autoware/autoware:1.13.0-melodic-cuda bash 
 ```
 
 Dockerコンテナ内で
